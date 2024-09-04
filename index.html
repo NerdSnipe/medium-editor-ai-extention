@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediumEditor with AI Assistant Extension Demo</title>
+
+    <!-- MediumEditor CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/themes/default.min.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        .editable {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            min-height: 200px;
+        }
+        .medium-editor-ai-assistant-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .medium-editor-ai-assistant-dialog textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        .medium-editor-ai-assistant-dialog .ai-service-selection {
+            margin-bottom: 10px;
+        }
+        .medium-editor-ai-assistant-dialog .submit-button {
+            display: block;
+            width: 100%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>MediumEditor with AI Assistant Extension</h1>
+<div class="editable">
+    <p>This is an editable area. Try using the AI Assistant!</p>
+</div>
+
+<!-- MediumEditor JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js"></script>
+
+<!-- AI Assistant Extension -->
+<script src="./ai-assistant-extension.js"></script>
+
+<!-- Initialize MediumEditor -->
+<script>
+    var editor = new MediumEditor('.editable', {
+        toolbar: {
+            buttons: ['bold', 'italic', 'underline', 'ai-assistant']
+        },
+        extensions: {
+            'ai-assistant': new AIAssistantExtension()
+        },
+        // In a real implementation, you would set these options:
+        // openAIApiKey: 'your-openai-api-key',
+        // claudeApiKey: 'your-claude-api-key',
+        // openAISystemPrompt: 'You are a helpful assistant.',
+        // claudeSystemPrompt: 'You are Claude, an AI assistant created by Anthropic.',
+    });
+</script>
+</body>
+</html>
